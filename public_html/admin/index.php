@@ -48,11 +48,11 @@
     <div class="searchArea">
         <div class="colGrp">
             <div class="colHd clBg5 cl2"><span><b>교육일</b></span></div>
-            <div class="colBd"><input class="dualDateBox filter" id="EDU_DT_From"><span>~</span><input class="dualDateBox filter" id="EDU_DT_To"></div>
+            <div class="colBd"><input class="dualDateBox filter" maxlength="10" id="EDU_DT_From"><span>~</span><input class="dualDateBox filter" maxlength="10" id="EDU_DT_To"></div>
         </div>
         <div class="colGrp">
             <div class="colHd clBg5 cl2"><span><b>마감일</b></span></div>
-            <div class="colBd"><input class="dualDateBox filter" id="END_DT_From"><span>~</span><input class="dualDateBox filter" id="END_DT_To"></div>
+            <div class="colBd"><input class="dualDateBox filter" maxlength="10" id="END_DT_From"><span>~</span><input class="dualDateBox filter" maxlength="10" id="END_DT_To"></div>
         </div>
         <div class="colGrp">
             <div class="colHd clBg5 cl2"><span><b>교육비</b></span></div>
@@ -105,6 +105,7 @@
 <script type='text/javascript' src='/admin/assets/js/modal.js'></script>
 <script type='text/javascript' src='/admin/assets/js/library/xlsx.mini.min.js'></script>
 <script type='text/javascript' src='/admin/assets/js/index.js'></script>
+<script type='text/javascript' src='/assets/js/dateForm.js'></script>
 
 <?php include('components/footer.php'); ?>
 

@@ -1,5 +1,8 @@
 function autoHypenPhone(str){
     str = str.replace(/[^0-9]/g, '');
+    if (str.length>11){ //숫자의 수가 11자리를 초과하면
+        str = str.substr(0,11);
+    }    
     var tmp = '';
     if( str.length < 4){
         return str;

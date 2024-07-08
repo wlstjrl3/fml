@@ -16,7 +16,7 @@ document.querySelector("select[name=EDU_DT]").addEventListener('change',(e)=>{
         document.querySelector("#onlineDisplay").style.display="block";
     }else{
         //대면 강좌인경우 이메일 주소 인풋박스는 숨기고 값은 none으로
-        document.querySelector("input[name=EMAIL]").value="비대면";
+        document.querySelector("input[name=EMAIL]").value="미수집(대면수업)";
         document.querySelector("#onlineDisplay").style.display="none";
         
     }
@@ -30,6 +30,8 @@ document.querySelectorAll("input[name=M_RELIGION]").forEach((mR,key)=>{
         }else{
             document.querySelectorAll(".mRLink").forEach((mRL,key)=>{
                 mRL.style.display="none";
+                //견진 받지않음으로 변경코드 추가
+                document.querySelector("input[name=M_CONFIRM]").value="1"; //받지않음
             });
         }
     });
@@ -43,6 +45,8 @@ document.querySelectorAll("input[name=F_RELIGION]").forEach((fR,key)=>{
         }else{
             document.querySelectorAll(".fRLink").forEach((fRL,key)=>{
                 fRL.style.display="none";
+                //견진 받지않음으로 변경코드 추가
+                document.querySelector("input[name=F_CONFIRM]").value="1"; //받지않음
             });
         }
     });

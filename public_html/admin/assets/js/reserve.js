@@ -220,3 +220,12 @@ document.querySelectorAll(".filter").forEach((f,key)=>{
         mytbl.show("myTbl");
     });
 });
+
+//날짜 형식 자동 하이픈 추가를 위한 코드
+document.querySelectorAll(".dualDateBox").forEach(dtBox => {
+    dtBox.onkeyup = function(event){
+        event = event || window.event;
+        var _val = this.value.trim();
+        this.value = autoHypenDate(_val) ;
+    }
+});

@@ -21,7 +21,10 @@ a{
     transform : rotate(0.03deg);
 }
 /*///////////////////////////////*/
-
+select[readonly] {
+    background-color: #ddd;
+    pointer-events: none;
+}
 li{list-style: none;}
 html {
     scroll-behavior: smooth;

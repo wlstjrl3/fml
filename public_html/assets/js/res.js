@@ -45,7 +45,7 @@ function xhrSend(){
                     form.setAttribute('method','post');
                     form.setAttribute('action','/req.php');
                     document.body.appendChild(form);
-                    debugger;
+                    //debugger;
                     form.submit();
                 }else{
 

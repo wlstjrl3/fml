@@ -219,6 +219,7 @@
 <script type='text/javascript' src='/admin/assets/js/modal.js'></script>
 <script type='text/javascript' src='/admin/assets/js/library/xlsx.mini.min.js'></script>
 <script type='text/javascript' src='/admin/assets/js/reserve.js'></script>
+<script type='text/javascript' src='/assets/js/dateForm.js'></script>
 
 <?php include('components/footer.php'); ?>
 

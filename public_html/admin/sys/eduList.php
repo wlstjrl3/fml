@@ -6,7 +6,10 @@
     //갯수 카운트 쿼리
     $rowCntSql = "SELECT COUNT(*) AS ROW_CNT FROM EDU_FAMILY.EDU_CLASS";
     //기본 쿼리
-    $sql = "SELECT * FROM EDU_FAMILY.EDU_CLASS";
+    $sql = "SELECT EDU_DT,END_DT,EDU_PAY,TEAM_CNT,
+    CASE 
+    WHEN ONLINE=0 THEN '대면' 
+    WHEN ONLINE=1 THEN '비대면' END AS ONLINE FROM EDU_FAMILY.EDU_CLASS";
     //조건문 지정
     $whereSql = " WHERE 1=1 ";
     if(@$_REQUEST['EDU_DT_From']){

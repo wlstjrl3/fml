@@ -12,7 +12,16 @@
             <div class="reqTr">
                 <div class="reqTh"><span class="cl2 fs6 fontWBold">교육일</span></div>
                 <div class="reqTd">
-                    <select class="eduDT" name="EDU_DT" style="background:#FFF;">
+                    <?php
+                        $limitDt = date("Y-m-d", strtotime("+7 Day"));
+                        @$eduDt = @date(@$_REQUEST['EDU_DT']);
+                        if(@$eduDt>'2020-01-01'&&$limitDt>=@$eduDt){
+                            echo '<span style="position:absolute;color:red;">교육일 일주일 전부터 수정 불가</span>';
+                            echo '<select class="eduDT" name="EDU_DT" readonly>';
+                        }else{
+                            echo '<select class="eduDT" name="EDU_DT" style="background:#FFF;">';
+                        }
+                    ?>
                         <option value="">선택</option>
                     <?php
                         $sql = "
