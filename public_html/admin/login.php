@@ -1,4 +1,27 @@
-<?php include('components/header.php'); ?>
+<?php
+    error_reporting( E_ALL );
+    ini_set( "display_errors", 1 );
+    session_start();
+    if(@$_SESSION["USER_PASS"]=='' && $_SERVER['PHP_SELF']!='/admin/login.php' && $_SERVER['PHP_SELF']!='/style.php'){
+        echo "<script>document.location.href='/admin/login.php';</script>";
+        die('관리자로그인 필요');
+    }
+?>
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf8' />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <link href="/admin/assets/css/common.css?ver=0.001" rel="stylesheet" />
+    <link href="/admin/assets/css/header.css?ver=0.001" rel="stylesheet" />
+    <script defer src="https://sinseiki.github.io/noIE.js/noIE.js" ></script><!--익스플로러 사용제한-->    
+    <script type='text/javascript' src='/admin/assets/js/header.js'></script>
+
+    <title>제1대리구 혼인강좌 수강신청 관리시스템</title>
+</head>
+<body>
+
 <script type='text/javascript' src='/admin/assets/js/login.js'></script>
 <link href="/admin/assets/css/login.css?ver=0.001" rel="stylesheet" />
 

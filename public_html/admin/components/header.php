@@ -33,19 +33,35 @@
                     <ul>
                         <li>
                             <a href="/admin/">
-                                └&nbsp;강좌설정
+                                └&nbsp;혼인강좌설정
                             </a>
                         </li>
                         <li>
                             <a href="/admin/reserve.php">
-                                └&nbsp;신청자관리
+                                └&nbsp;혼인강좌 신청자관리
                             </a>
                         </li>
                     </ul>
                     <hr>
                 </li>
+                <li class="clBg2">
+                    <a class="fs5" href="#">약혼자주말</a>
+                    <ul>
+                        <li>
+                            <a href="/admin/eeList.php">
+                                └&nbsp;약혼주말설정
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/admin/eeReserve.php">
+                                └&nbsp;약혼주말 신청자관리
+                            </a>
+                        </li>
+                    </ul>
+                    <hr>
+                </li>                
                 <li>
-                    <a class="fs5" href="./logout.php">사용자관리</a>
+                    <a class="fs5" href="/admin/user.php">사용자관리</a>
                     <hr>
                 </li>   
                 <li>

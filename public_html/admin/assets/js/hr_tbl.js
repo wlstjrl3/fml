@@ -15,6 +15,7 @@ class hr_tbl{
         resValue += "&LIMIT="+this.hrDt.xhr.page*this.hrDt.xhr.limit+","+this.hrDt.xhr.limit; //페이지네이션 정보를 추가한다.
 
         xhr.open("GET", resValue); xhr.send(); //XHR을 즉시 호출한다.
+        //debugger;
         xhr.onload = () => {
             if (xhr.status === 200) { //XHR 응답이 존재한다면
                 var tableData = JSON.parse(xhr.response)['data']; //응답 받은 JSON데이터를 파싱한다.

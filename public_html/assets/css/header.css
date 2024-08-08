@@ -37,13 +37,14 @@ header{
     position:absolute;
     z-index:5;
 }
-#navToggle{
-    margin:0 0 0 12px;
+#cswLogoBgBlue{
+    width:40px;
+    margin:5px 30px;
+    float:left;
 }
-#navToggle img{
-    padding:8px 14px;
-    width:48px;
-    height:54px;
+.navToggle{
+    padding:15px;
+    display: inline-block;
 }
 #searchForm{
     text-align: center;

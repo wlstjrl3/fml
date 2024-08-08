@@ -11,8 +11,8 @@
     //추가 조건
     $sql = $sql."
         ,CASE
-        WHEN PLC_TYPE = 0 THEN '성당'
-        WHEN PLC_TYPE = 1 THEN '예식장'
+        WHEN PLC_TYPE = 0 THEN '신랑'
+        WHEN PLC_TYPE = 1 THEN '신부'
         END AS PLC_TYPE_KOR
         ,CASE
         WHEN M_RELIGION = 0 THEN '가톨릭'
@@ -33,7 +33,7 @@
         ";
     $sql = $sql." FROM EDU_FAMILY.EDU_FAMILY";
     //조건문 지정
-    $whereSql = " WHERE GRP_CD='MRG_EDU' ";
+    $whereSql = " WHERE GRP_CD='WEEK_END' ";
     if(@$_REQUEST['EDU_DT_From']){
         $whereSql=$whereSql." AND EDU_DT >= '".$_REQUEST['EDU_DT_From']." 00:00:00'";
     }
@@ -86,7 +86,7 @@
         $limitSql = $limitSql." LIMIT ".$_REQUEST['LIMIT'];
     }
     
-    $totalCnt = mysqli_fetch_assoc(mysqli_query($conn,$rowCntSql." WHERE GRP_CD='MRG_EDU'"));
+    $totalCnt = mysqli_fetch_assoc(mysqli_query($conn,$rowCntSql." WHERE GRP_CD='WEEK_END'"));
     $filterCnt = mysqli_fetch_assoc(mysqli_query($conn,$rowCntSql.$whereSql));
 
     $result = mysqli_query($conn,$sql.$whereSql.$orderSql.$limitSql);

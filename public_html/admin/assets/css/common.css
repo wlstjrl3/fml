@@ -12,6 +12,9 @@
 b,p,h1,h2,h3,h4,h5,h6,span{
     transform : rotate(0.03deg);
 }
+hr{
+    opacity: .3;
+}
 span{
     display:inline-block;
 }

@@ -1,7 +1,7 @@
 //데이터테이블을 지정한다.
 var mytbl = new hr_tbl({
     xhr:{
-        url:'/admin/sys/rsvList.php',
+        url:'/admin/sys/eeRsvList.php',
         columXHR: '',
         key : psnlKey.value, //api 호출할 보안 개인인증키
         where: {
@@ -19,8 +19,7 @@ var mytbl = new hr_tbl({
         {title: "일련번호", data: "EF_NO", className: "colSeq hidden"}
         ,{title: "교육일", data: "EDU_DT", className: "colEduDt"}
         ,{title: "혼인예정일", data: "MRG_DT", className: "colMrgDt"}
-        ,{title: "혼인장소", data: "PLC_TYPE_KOR", className: "colPlcType"}
-        ,{title: "장소타입", data: "MRG_PLACE", className: "colMrgPlace"}
+        ,{title: "신청인구분", data: "PLC_TYPE_KOR", className: "colPlcType"}
         ,{title: "이메일주소", data: "EMAIL", className: "colEmail"}
 
         ,{title: "신랑종교", data: "M_RELIGION_KOR", className: "colReligion"}
@@ -61,8 +60,8 @@ newCol.addEventListener("click",()=>{
 //행을 클릭했을때 xhr로 다시 끌어올 데이터는 각 페이지마다 다르기에 여기에서 지정
 function trDataXHR(idx){ 
     let xhr = new XMLHttpRequest();
-    xhr.open("GET", "/admin/sys/rsvConfig.php?key="+psnlKey.value+"&EF_NO="+idx+"&CRUD=R"); xhr.send(); //XHR을 즉시 호출한다. psnlKey는 추후 암호화 하여 재적용 예정
-    console.log("/admin/sys/rsvConfig.php?key="+psnlKey.value+"&EF_NO="+idx+"&CRUD=R");
+    xhr.open("GET", "/admin/sys/eeRsvConfig.php?key="+psnlKey.value+"&EF_NO="+idx+"&CRUD=R"); xhr.send(); //XHR을 즉시 호출한다. psnlKey는 추후 암호화 하여 재적용 예정
+    console.log("/admin/sys/eeRsvConfig.php?key="+psnlKey.value+"&EF_NO="+idx+"&CRUD=R");
     xhr.onload = () => {
         if (xhr.status === 200) { //XHR 응답이 존재한다면
             var res = JSON.parse(xhr.response)['data']; //응답 받은 JSON데이터를 파싱한다.
@@ -81,19 +80,19 @@ function trDataXHR(idx){
                         break;
                         case 2 : input.value=res[0].MRG_DT
                         break;
-                        case 3 : input.value=res[0].MRG_PLACE
+                        case 3 : input.value=res[0].EMAIL
                         break;
-                        case 4 : input.value=res[0].EMAIL
+                        case 4 : input.value=res[0].M_NAME
                         break;
-                        case 5 : input.value=res[0].M_NAME
+                        case 5 : input.value=res[0].M_BAPT
                         break;
-                        case 6 : input.value=res[0].M_BAPT
+                        case 6 : input.value=res[0].M_ORG_NM
                         break;
-                        case 7 : input.value=res[0].M_ORG_NM
+                        case 7 : input.value=res[0].M_BIRTH
                         break;
-                        case 8 : input.value=res[0].M_BIRTH
+                        case 8 : input.value=res[0].M_TEL_NO
                         break;
-                        case 9 : input.value=res[0].M_TEL_NO
+                        case 9 : input.value=res[0].M_TEL_NO2
                         break;
                         case 10 : input.value=res[0].F_NAME
                         break;
@@ -105,6 +104,8 @@ function trDataXHR(idx){
                         break;
                         case 14 : input.value=res[0].F_TEL_NO
                         break;
+                        case 15 : input.value=res[0].F_TEL_NO2
+                        break;
                     }
                 });
                 document.querySelector(".modalBody").querySelectorAll("select").forEach((select,key)=>{
@@ -114,27 +115,17 @@ function trDataXHR(idx){
                         case 1 : select.value=res[0].M_RELIGION;
                             if(res[0].M_RELIGION>0){//신랑이 비신자
                                 document.querySelector(".modalForm").querySelectorAll("input").forEach((inputSub,key)=>{
-                                    if(key==6||key==7){inputSub.disabled=true;}
-                                });
-                                document.querySelector(".modalForm").querySelectorAll("select").forEach((selectSub,key)=>{
-                                    if(key==2){selectSub.disabled=true;}
+                                    if(key==5||key==6){inputSub.disabled=true;}
                                 });
                             }                         
                         break;
-                        case 2 : select.value=res[0].M_CONFIRM
-                        break;
-                        case 3 : select.value=res[0].F_RELIGION;
+                        case 2 : select.value=res[0].F_RELIGION;
                             if(res[0].F_RELIGION>0){//신부가 비신자
                                 document.querySelector(".modalForm").querySelectorAll("input").forEach((inputSub,key)=>{
-                                    if(key==11||key==12){inputSub.disabled=true;}
-                                });
-                                document.querySelector(".modalForm").querySelectorAll("select").forEach((selectSub,key)=>{
-                                    if(key==4){selectSub.disabled=true;}
+                                    if(key==10||key==11){inputSub.disabled=true;}
                                 });
                             }
-                        break;     
-                        case 4 : select.value=res[0].F_CONFIRM
-                        break;                         
+                        break;                       
                     }
                 });
             }
@@ -151,29 +142,28 @@ modalEdtBtn.addEventListener("click",()=>{
         if(key==0){writeUrl+="&EF_NO="+input.value}
         else if(key==1){writeUrl+="&EDU_DT="+input.value}
         else if(key==2){writeUrl+="&MRG_DT="+input.value}
-        else if(key==3){writeUrl+="&MRG_PLACE="+input.value}
-        else if(key==4){writeUrl+="&EMAIL="+input.value}
-        else if(key==5){writeUrl+="&M_NAME="+input.value}
-        else if(key==6){writeUrl+="&M_BAPT="+input.value}
-        else if(key==7){writeUrl+="&M_ORG_NM="+input.value}
-        else if(key==8){writeUrl+="&M_BIRTH="+input.value}
-        else if(key==9){writeUrl+="&M_TEL_NO="+input.value}
+        else if(key==3){writeUrl+="&EMAIL="+input.value}
+        else if(key==4){writeUrl+="&M_NAME="+input.value}
+        else if(key==5){writeUrl+="&M_BAPT="+input.value}
+        else if(key==6){writeUrl+="&M_ORG_NM="+input.value}
+        else if(key==7){writeUrl+="&M_BIRTH="+input.value}
+        else if(key==8){writeUrl+="&M_TEL_NO="+input.value}
+        else if(key==9){writeUrl+="&M_TEL_NO2="+input.value}
         else if(key==10){writeUrl+="&F_NAME="+input.value}
         else if(key==11){writeUrl+="&F_BAPT="+input.value}
         else if(key==12){writeUrl+="&F_ORG_NM="+input.value}
         else if(key==13){writeUrl+="&F_BIRTH="+input.value}
         else if(key==14){writeUrl+="&F_TEL_NO="+input.value}
+        else if(key==15){writeUrl+="&F_TEL_NO2="+input.value}
     });
     document.querySelector(".modalBody").querySelectorAll("select").forEach((select,key)=>{
         if(key==0){writeUrl+="&PLC_TYPE="+select.value}
         else if(key==1){writeUrl+="&M_RELIGION="+select.value}
-        else if(key==2){writeUrl+="&M_CONFIRM="+select.value}
-        else if(key==3){writeUrl+="&F_RELIGION="+select.value}
-        else if(key==4){writeUrl+="&F_CONFIRM="+select.value}
+        else if(key==2){writeUrl+="&F_RELIGION="+select.value}
     });
 
-    console.log("/admin/sys/rsvConfig.php?key="+psnlKey.value+writeUrl+"&CRUD=C");
-    xhr.open("GET", "/admin/sys/rsvConfig.php?key="+psnlKey.value+writeUrl+"&CRUD=C"); xhr.send(); //XHR을 즉시 호출한다. psnlKey는 추후 암호화 하여 재적용 예정
+    console.log("/admin/sys/eeRsvConfig.php?key="+psnlKey.value+writeUrl+"&CRUD=C");
+    xhr.open("GET", "/admin/sys/eeRsvConfig.php?key="+psnlKey.value+writeUrl+"&CRUD=C"); xhr.send(); //XHR을 즉시 호출한다. psnlKey는 추후 암호화 하여 재적용 예정
     xhr.onload = () => {
         if (xhr.status === 200) { //XHR 응답이 존재한다면
             //var res = JSON.parse(xhr.response)['data']; //응답 받은 JSON데이터를 파싱한다.
@@ -198,8 +188,8 @@ modalDelBtn.addEventListener("click",()=>{
     document.querySelector(".modalForm").querySelectorAll("input").forEach((input,key)=>{
         if(key==0){deleteUrl+="&EF_NO="+input.value}
     });
-    console.log("/admin/sys/rsvConfig.php?key="+psnlKey.value+deleteUrl+"&CRUD=D");
-    xhr.open("GET", "/admin/sys/rsvConfig.php?key="+psnlKey.value+deleteUrl+"&CRUD=D"); xhr.send(); //XHR을 즉시 호출한다. psnlKey는 추후 암호화 하여 재적용 예정
+    console.log("/admin/sys/eeRsvConfig.php?key="+psnlKey.value+deleteUrl+"&CRUD=D");
+    xhr.open("GET", "/admin/sys/eeRsvConfig.php?key="+psnlKey.value+deleteUrl+"&CRUD=D"); xhr.send(); //XHR을 즉시 호출한다. psnlKey는 추후 암호화 하여 재적용 예정
     xhr.onload = () => {
         if (xhr.status === 200) { //XHR 응답이 존재한다면
             //var res = JSON.parse(xhr.response)['data']; //응답 받은 JSON데이터를 파싱한다.

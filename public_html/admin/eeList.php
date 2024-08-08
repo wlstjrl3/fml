@@ -3,7 +3,7 @@
     <div class="modalBg"></div>
     <div class="modalWindow">
         <div class="modalHeader">
-            <b>혼인강좌설정 </b>
+            <b>약혼자주말 설정 </b>
             <button></button>
         </div>
         <div class="modalBody">
@@ -12,26 +12,26 @@
                 <div class="modalBd"><input style="background:#EEE;" autocomplete='off' readonly></div>
             </div>
             <div class="modalGrp">
+                <div class="modalHd">교육차수</div>
+                <div class="modalBd"><input autocomplete='off'></div>
+            </div>
+            <div class="modalGrp">
                 <div class="modalHd">교육일</div>
-                <div class="modalBd"><input type="date" autocomplete='off'></div>
+                <div class="modalBd"><input class="dateBox" autocomplete='off'></div>
             </div>
             <div class="modalGrp">
                 <div class="modalHd">마감일</div>
-                <div class="modalBd"><input type="date" autocomplete='off'></div>
+                <div class="modalBd"><input class="dateBox" autocomplete='off'></div>
             </div>
             <div class="modalGrp">
                 <div class="modalHd">교육비</div>
                 <div class="modalBd"><input autocomplete='off'></div>
             </div>
             <div class="modalGrp">
-                <div class="modalHd">최대팀수</div>
-                <div class="modalBd"><input autocomplete='off'></div>
-            </div>
-            <div class="modalGrp">
-                <div class="modalHd">온라인수강</div>
+                <div class="modalHd">장소명</div>
                 <div class="modalBd"><select>
-                    <option value="0">대면</option>
-                    <option value="1">비대면</option>
+                    <option>아론의집</option>
+                    <option>가톨릭교육문화회관</option>
                 </select></div>
             </div>
             <div style="clear:both;"></div>
@@ -46,32 +46,30 @@
 <div class="container">
 
     <h4 class="cl3 pddS">
-        혼인강좌 설정
+        약혼자주말 설정
     </h4>
 
     <div class="searchArea">
         <div class="colGrp">
+            <div class="colHd clBg5 cl2"><span><b>교육회차</b></span></div>
+            <div class="colBd"><input id="TEAM_CNT" class="filter"></div>
+        </div>
+        <div class="colGrp">
             <div class="colHd clBg5 cl2"><span><b>교육일</b></span></div>
-            <div class="colBd"><input class="dualDateBox filter" maxlength="10" id="EDU_DT_From"><span>~</span><input class="dualDateBox filter" maxlength="10" id="EDU_DT_To"></div>
+            <div class="colBd"><input class="dualDateBox dateBox filter" maxlength="10" id="EDU_DT_From"><span>~</span><input class="dualDateBox dateBox filter" maxlength="10" id="EDU_DT_To"></div>
         </div>
         <div class="colGrp">
             <div class="colHd clBg5 cl2"><span><b>마감일</b></span></div>
-            <div class="colBd"><input class="dualDateBox filter" maxlength="10" id="END_DT_From"><span>~</span><input class="dualDateBox filter" maxlength="10" id="END_DT_To"></div>
+            <div class="colBd"><input class="dualDateBox dateBox filter" maxlength="10" id="END_DT_From"><span>~</span><input class="dualDateBox dateBox filter" maxlength="10" id="END_DT_To"></div>
         </div>
         <div class="colGrp">
             <div class="colHd clBg5 cl2"><span><b>교육비</b></span></div>
             <div class="colBd"><input id="EDU_PAY" class="filter"></div>
         </div>
-
         <div class="colGrp">
-            <div class="colHd clBg5 cl2"><span><b>최대팀수</b></span></div>
-            <div class="colBd"><input id="TEAM_CNT" class="filter"></div>
-        </div>
-
-        <div class="colGrp">
-            <div class="colHd clBg5 cl2"><span><b>온라인수강</b></span></div>
-            <div class="colBd"><select id="ONLINE" class="filter">
-            <option value="2">전체</option><option value="0">대면</option><option value="1">비대면</option>
+            <div class="colHd clBg5 cl2"><span><b>교육장소</b></span></div>
+            <div class="colBd"><select id="EDU_NAME" class="filter">
+            <option value="">전체</option><option>아론의집</option><option>가톨릭교육문화회관</option>
             </select></div>
         </div>
     </div>
@@ -107,7 +105,7 @@
 <script type='text/javascript' src='/admin/assets/js/hr_tbl.js'></script>
 <script type='text/javascript' src='/admin/assets/js/modal.js'></script>
 <script type='text/javascript' src='/admin/assets/js/library/xlsx.mini.min.js'></script>
-<script type='text/javascript' src='/admin/assets/js/index.js'></script>
+<script type='text/javascript' src='/admin/assets/js/eeList.js'></script>
 <script type='text/javascript' src='/assets/js/dateForm.js'></script>
 
 <?php include('components/footer.php'); ?>

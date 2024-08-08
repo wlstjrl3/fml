@@ -1,7 +1,7 @@
 //데이터테이블을 지정한다.
 var mytbl = new hr_tbl({
     xhr:{
-        url:'/admin/sys/eduList.php',
+        url:'/admin/sys/eeEduList.php',
         columXHR: '',
         key : psnlKey.value, //api 호출할 보안 개인인증키
         where: {
@@ -17,11 +17,11 @@ var mytbl = new hr_tbl({
     columns: [
         //반드시 첫열이 key값이되는 열이 와야한다. 숨김여부는 class로 추가 지정
         {title: "idx", data: "CLASS_NO", className: "colClassNo hidden"}
+        ,{title: "교육회차", data: "TEAM_CNT", className: "colTeamCnt"}
         ,{title: "교육일", data: "EDU_DT", className: "colEduDt"}
         ,{title: "마감일", data: "END_DT", className: "colEndDt"}
         ,{title: "교육비", data: "EDU_PAY", className: "colEduPay"}
-        ,{title: "참가팀수", data: "TEAM_CNT", className: "colTeamCnt"}
-        ,{title: "온라인수강", data: "ONLINE", className: "colOnline"}
+        ,{title: "교육장소", data: "EDU_NAME", className: "colEduName"}
     ],
 });
 mytbl.show('myTbl'); //테이블의 아이디에 렌더링 한다(갱신도 가능)
@@ -39,8 +39,8 @@ newCol.addEventListener("click",()=>{
 //행을 클릭했을때 xhr로 다시 끌어올 데이터는 각 페이지마다 다르기에 여기에서 지정
 function trDataXHR(idx){ 
     let xhr = new XMLHttpRequest();
-    xhr.open("GET", "/admin/sys/eduConfig.php?key="+psnlKey.value+"&CLASS_NO="+idx+"&CRUD=R"); xhr.send(); //XHR을 즉시 호출한다. psnlKey는 추후 암호화 하여 재적용 예정
-    console.log("/admin/sys/eduConfig.php?key="+psnlKey.value+"&CLASS_NO="+idx+"&CRUD=R");
+    xhr.open("GET", "/admin/sys/eeEduConfig.php?key="+psnlKey.value+"&CLASS_NO="+idx+"&CRUD=R"); xhr.send(); //XHR을 즉시 호출한다. psnlKey는 추후 암호화 하여 재적용 예정
+    console.log("/admin/sys/eeEduConfig.php?key="+psnlKey.value+"&CLASS_NO="+idx+"&CRUD=R");
     xhr.onload = () => {
         if (xhr.status === 200) { //XHR 응답이 존재한다면
             var res = JSON.parse(xhr.response)['data']; //응답 받은 JSON데이터를 파싱한다.
@@ -51,20 +51,20 @@ function trDataXHR(idx){
                             input.value=res[0].CLASS_NO
                             break;
                         case 1 :
-                            input.value=res[0].EDU_DT
+                            input.value=res[0].TEAM_CNT
                             break;
                         case 2 :
-                            input.value=res[0].END_DT
+                            input.value=res[0].EDU_DT
                             break;
                         case 3 :
-                            input.value=res[0].EDU_PAY
+                            input.value=res[0].END_DT
                             break;
                         case 4 :
-                            input.value=res[0].TEAM_CNT
+                            input.value=res[0].EDU_PAY
                             break;
                     }
                 });
-                document.querySelector(".modalBody").querySelector("select").value=res[0].ONLINE; //대면 비대면은 셀렉트박스에서 구분
+                document.querySelector(".modalBody").querySelector("select").value=res[0].EDU_NAME; //대면 비대면은 셀렉트박스에서 구분
             }
         }else{
             console.log("eduConfigXhr 정보 로드 에러");
@@ -77,14 +77,14 @@ modalEdtBtn.addEventListener("click",()=>{
     let writeUrl='';
     document.querySelector(".modalForm").querySelectorAll("input").forEach((input,key)=>{
         if(key==0){writeUrl+="&CLASS_NO="+input.value}
-        else if(key==1){writeUrl+="&EDU_DT="+input.value}
-        else if(key==2){writeUrl+="&END_DT="+input.value}
-        else if(key==3){writeUrl+="&EDU_PAY="+input.value}
-        else if(key==4){writeUrl+="&TEAM_CNT="+input.value}
+        else if(key==1){writeUrl+="&TEAM_CNT="+input.value}
+        else if(key==2){writeUrl+="&EDU_DT="+input.value}
+        else if(key==3){writeUrl+="&END_DT="+input.value}
+        else if(key==4){writeUrl+="&EDU_PAY="+input.value}
     });
-    writeUrl+="&ONLINE="+document.querySelector(".modalBody").querySelector("select").value;
-    console.log("/admin/sys/eduConfig.php?key="+psnlKey.value+writeUrl+"&CRUD=C");
-    xhr.open("GET", "/admin/sys/eduConfig.php?key="+psnlKey.value+writeUrl+"&CRUD=C"); xhr.send(); //XHR을 즉시 호출한다. psnlKey는 추후 암호화 하여 재적용 예정
+    writeUrl+="&EDU_NAME="+document.querySelector(".modalBody").querySelector("select").value;
+    console.log("/admin/sys/eeEduConfig.php?key="+psnlKey.value+writeUrl+"&CRUD=C");
+    xhr.open("GET", "/admin/sys/eeEduConfig.php?key="+psnlKey.value+writeUrl+"&CRUD=C"); xhr.send(); //XHR을 즉시 호출한다. psnlKey는 추후 암호화 하여 재적용 예정
     xhr.onload = () => {
         if (xhr.status === 200) { //XHR 응답이 존재한다면
             //var res = JSON.parse(xhr.response)['data']; //응답 받은 JSON데이터를 파싱한다.
@@ -107,10 +107,10 @@ modalDelBtn.addEventListener("click",()=>{
     let xhr = new XMLHttpRequest();
     let deleteUrl='';
     document.querySelector(".modalForm").querySelectorAll("input").forEach((input,key)=>{
-        if(key==0){deleteUrl+="&CLASS_NO="+input.value}
+        if(key==0){deleteUrl+="&EDU_DT="+input.value}
     });
-    console.log("/admin/sys/eduConfig.php?key="+psnlKey.value+deleteUrl+"&CRUD=D");
-    xhr.open("GET", "/admin/sys/eduConfig.php?key="+psnlKey.value+deleteUrl+"&CRUD=D"); xhr.send(); //XHR을 즉시 호출한다. psnlKey는 추후 암호화 하여 재적용 예정
+    console.log("/admin/sys/eeEduConfig.php?key="+psnlKey.value+deleteUrl+"&CRUD=D");
+    xhr.open("GET", "/admin/sys/eeEduConfig.php?key="+psnlKey.value+deleteUrl+"&CRUD=D"); xhr.send(); //XHR을 즉시 호출한다. psnlKey는 추후 암호화 하여 재적용 예정
     xhr.onload = () => {
         if (xhr.status === 200) { //XHR 응답이 존재한다면
             //var res = JSON.parse(xhr.response)['data']; //응답 받은 JSON데이터를 파싱한다.
@@ -180,7 +180,7 @@ document.querySelectorAll(".filter").forEach((f,key)=>{
 });
 
 //날짜 형식 자동 하이픈 추가를 위한 코드
-document.querySelectorAll(".dualDateBox").forEach(dtBox => {
+document.querySelectorAll(".dateBox").forEach(dtBox => {
     dtBox.onkeyup = function(event){
         event = event || window.event;
         var _val = this.value.trim();

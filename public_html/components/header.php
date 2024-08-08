@@ -16,13 +16,17 @@ ini_set( "display_errors", 1 );
     <title>천주교 수원교구 혼인강좌</title>
 </head>
 <body>
-    <div id="closeNav" style="width:0%;height:0%;background:rgba(100,100,100,0.5);position:absolute;z-index:2;" onclick="toggleNav()"></div>
+    <div id="closeNav" style="width:0%;height:0%;background:rgba(100,100,100,0.5);position:absolute;z-index:2;" onclick="navClose()"></div>
     <header id="header">
+        <div>
+            <img id="cswLogoBgBlue" src="/assets/img/svgs/cswLogoBgBlue.svg" alt="수원교구로고"/>
+        </div>
         <!-- Sidebar navigation {{{ --> 
         <div class="hd-nav-margin" style="width:0%;height:100%;float:left;background-color:white;position:fixed;z-index:3;top:54px;"></div>
-        <div class="side-nav">
+        <div class="side-nav side-nav1">
             <ul class="sideNavBlock">
 				<li>
+                    <br>
                     <a class="fs5"  href="/#intro">혼인강좌 소개</a>
                 </li>
                 <li>
@@ -69,14 +73,64 @@ ini_set( "display_errors", 1 );
                 </li>             
             </ul>
         </div>
+        <div class="side-nav side-nav2">
+            <ul class="sideNavBlock">
+				<li>
+                    <br>
+                    <a class="fs5"  href="/ee_index.php">약혼자 주말 소개</a>
+                </li>
+                <li>
+                    <a class="fs5" href="/ee_index.php#">안내사항</a>
+                    <ul>
+                        <li>
+                            <a href="/ee_index.php#qa">
+                                └&nbsp;Q & A
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/ee_index.php#schedule">
+                                └&nbsp;일정안내
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/ee_index.php#map">
+                                └&nbsp;오시는 길
+                            </a>
+                        </li>
+                    </ul>
+                    <hr>
+                </li>
+                <li>
+                    <a class="fs5" >신청 및 확인</a>
+                    <ul>
+                        <li>
+                            <a href="/ee_req.php">
+                                └&nbsp;약혼자 주말 신청
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/ee_res.php">
+                                └&nbsp;신청 확인
+                            </a>
+                        </li>
+                    </ul>
+                    <hr>
+                </li>             
+            </ul>
+        </div>        
         <!-- Sidebar navigation }}}-->  
         <div class="nav" style="box-shadow: inset 0px -1px 0px rgba(186, 186, 186, 0.25);">
             <div style="height:54px;max-width:1280px;margin:0 auto;width:100%;white-space:nowrap;">
-                <div id="navToggle">
-                    <a data-activates="slide-out" onclick="toggleNav()">
-                        <img src="/assets/img/svgs/menu.svg" alt="메뉴"/>
+                <div class="navToggle">
+                    <a data-activates="slide-out" onclick="toggleNav1()">
+                        <span class="fs5 clW">혼인강좌</span>
                     </a>
                 </div>
+                <div class="navToggle">
+                    <a data-activates="slide-out" onclick="toggleNav2()">
+                        <span class="fs5 clW">약혼자주말</span>
+                    </a>
+                </div>                
             </div>   
         </div>        
     </header>

@@ -7,7 +7,7 @@
     if($_REQUEST['CRUD']=='C'){
         if($_REQUEST['EF_NO']=="0"||$_REQUEST['EF_NO']==""){ //신규 작성
             $sql = "INSERT INTO EDU_FAMILY.EDU_FAMILY(GRP_CD,EDU_DT,MRG_DT,MRG_PLACE,EMAIL,M_NAME,M_BAPT,M_ORG_NM,M_BIRTH,M_TEL_NO,F_NAME,F_BAPT,F_ORG_NM,F_BIRTH,F_TEL_NO,PLC_TYPE,M_RELIGION,M_CONFIRM,F_RELIGION,F_CONFIRM,REG_DT) VALUES ";
-            $sql = $sql."('MRG_EDU','".$_REQUEST['EDU_DT']."','".$_REQUEST['MRG_DT']."','".$_REQUEST['MRG_PLACE']."','".$_REQUEST['EMAIL']."','".$_REQUEST['M_NAME']."','".$_REQUEST['M_BAPT']."','".$_REQUEST['M_ORG_NM']."','".$_REQUEST['M_BIRTH']."','".$_REQUEST['M_TEL_NO']."','".$_REQUEST['F_NAME']."','".$_REQUEST['F_BAPT']."','".$_REQUEST['F_ORG_NM']."','".$_REQUEST['F_BIRTH']."','".$_REQUEST['F_TEL_NO']."','".$_REQUEST['PLC_TYPE']."','".$_REQUEST['M_RELIGION']."','".$_REQUEST['M_CONFIRM']."','".$_REQUEST['F_RELIGION']."','".$_REQUEST['F_CONFIRM']."','".date("Y-m-d h:m:s");
+            $sql = $sql."('WEEK_END','".$_REQUEST['EDU_DT']."','".$_REQUEST['MRG_DT']."','".$_REQUEST['MRG_PLACE']."','".$_REQUEST['EMAIL']."','".$_REQUEST['M_NAME']."','".$_REQUEST['M_BAPT']."','".$_REQUEST['M_ORG_NM']."','".$_REQUEST['M_BIRTH']."','".$_REQUEST['M_TEL_NO']."','".$_REQUEST['F_NAME']."','".$_REQUEST['F_BAPT']."','".$_REQUEST['F_ORG_NM']."','".$_REQUEST['F_BIRTH']."','".$_REQUEST['F_TEL_NO']."','".$_REQUEST['PLC_TYPE']."','".$_REQUEST['M_RELIGION']."','".$_REQUEST['M_CONFIRM']."','".$_REQUEST['F_RELIGION']."','".$_REQUEST['F_CONFIRM']."','".date("Y-m-d h:m:s");
             $sql = $sql."')";
             echo $sql; //오류 점검용 쿼리
 
@@ -15,23 +15,22 @@
             $sql = "UPDATE EDU_FAMILY.EDU_FAMILY SET 
                 EDU_DT='".$_REQUEST['EDU_DT']."'
                 ,MRG_DT='".$_REQUEST['MRG_DT']."'
-                ,MRG_PLACE='".$_REQUEST['MRG_PLACE']."'
                 ,EMAIL='".$_REQUEST['EMAIL']."'
                 ,M_NAME='".$_REQUEST['M_NAME']."'
                 ,M_BAPT='".$_REQUEST['M_BAPT']."'
                 ,M_ORG_NM='".$_REQUEST['M_ORG_NM']."'
                 ,M_BIRTH='".$_REQUEST['M_BIRTH']."'
                 ,M_TEL_NO='".$_REQUEST['M_TEL_NO']."'
+                ,M_TEL_NO2='".$_REQUEST['M_TEL_NO2']."'
                 ,F_NAME='".$_REQUEST['F_NAME']."'
                 ,F_BAPT='".$_REQUEST['F_BAPT']."'
                 ,F_ORG_NM='".$_REQUEST['F_ORG_NM']."'
                 ,F_BIRTH='".$_REQUEST['F_BIRTH']."'
                 ,F_TEL_NO='".$_REQUEST['F_TEL_NO']."'
+                ,F_TEL_NO2='".$_REQUEST['F_TEL_NO2']."'
                 ,PLC_TYPE='".$_REQUEST['PLC_TYPE']."'
                 ,M_RELIGION='".$_REQUEST['M_RELIGION']."'
-                ,M_CONFIRM='".$_REQUEST['M_CONFIRM']."'
                 ,F_RELIGION='".$_REQUEST['F_RELIGION']."'
-                ,F_CONFIRM='".$_REQUEST['F_CONFIRM']."'
                 WHERE EF_NO = '".$_REQUEST['EF_NO']."'";
             echo $sql; //오류 점검용 쿼리
         }

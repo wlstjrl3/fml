@@ -6,9 +6,9 @@
     
     if($_REQUEST['CRUD']=='C'){
         if($_REQUEST['CLASS_NO']==""){ //신규 작성
-            $sql = "INSERT INTO EDU_FAMILY.EDU_CLASS(EDU_DT,END_DT,EDU_PAY,TEAM_CNT,ONLINE,EDU_NAME,GRP_CD) VALUES ('";
-            $sql = $sql.$_REQUEST['EDU_DT']."','".$_REQUEST['END_DT']."','".$_REQUEST['EDU_PAY']."','".$_REQUEST['TEAM_CNT']."','".$_REQUEST['ONLINE'];
-            $sql = $sql."','혼인강좌','MRG_EDU')";
+            $sql = "INSERT INTO EDU_FAMILY.EDU_CLASS(EDU_DT,END_DT,EDU_PAY,TEAM_CNT,EDU_NAME,GRP_CD) VALUES ('";
+            $sql = $sql.$_REQUEST['EDU_DT']."','".$_REQUEST['END_DT']."','".$_REQUEST['EDU_PAY']."','".$_REQUEST['TEAM_CNT']."','".$_REQUEST['EDU_NAME'];
+            $sql = $sql."','WEEK_END')";
             echo $sql; //오류 점검용 쿼리
         }else{ //기존 데이터 UPDATE
             $sql = "UPDATE EDU_FAMILY.EDU_CLASS SET 
@@ -16,7 +16,7 @@
                 ,END_DT='".$_REQUEST['END_DT']."'
                 ,EDU_PAY='".$_REQUEST['EDU_PAY']."'
                 ,TEAM_CNT='".$_REQUEST['TEAM_CNT']."'
-                ,ONLINE='".$_REQUEST['ONLINE']."'
+                ,EDU_NAME='".$_REQUEST['EDU_NAME']."'
                 WHERE CLASS_NO = '".$_REQUEST['CLASS_NO']."'";
             echo $sql; //오류 점검용 쿼리
         }
@@ -26,7 +26,7 @@
         //기본 쿼리
         $sql = "SELECT * FROM EDU_FAMILY.EDU_CLASS";
         //조건문 지정
-        $whereSql = " WHERE GRP_CD='MRG_EDU' ";
+        $whereSql = " WHERE GRP_CD='WEEK_END' ";
         if(@$_REQUEST['CLASS_NO']){
             $whereSql=$whereSql." AND CLASS_NO = '".$_REQUEST['CLASS_NO']."'";
         }

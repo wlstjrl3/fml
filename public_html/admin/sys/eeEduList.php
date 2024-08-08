@@ -6,12 +6,9 @@
     //갯수 카운트 쿼리
     $rowCntSql = "SELECT COUNT(*) AS ROW_CNT FROM EDU_FAMILY.EDU_CLASS";
     //기본 쿼리
-    $sql = "SELECT CLASS_NO,EDU_DT,END_DT,EDU_PAY,TEAM_CNT,
-    CASE 
-    WHEN ONLINE=0 THEN '대면' 
-    WHEN ONLINE=1 THEN '비대면' END AS ONLINE FROM EDU_FAMILY.EDU_CLASS";
+    $sql = "SELECT CLASS_NO,EDU_DT,END_DT,EDU_PAY,TEAM_CNT,EDU_NAME FROM EDU_FAMILY.EDU_CLASS";
     //조건문 지정
-    $whereSql = " WHERE GRP_CD = 'MRG_EDU' "; //혼인강좌 분리하여 로드
+    $whereSql = " WHERE GRP_CD = 'WEEK_END' "; //약혼자 주말 분리하여 로드
     if(@$_REQUEST['EDU_DT_From']){
         $whereSql=$whereSql." AND EDU_DT >= '".$_REQUEST['EDU_DT_From']." 00:00:00'";
     }

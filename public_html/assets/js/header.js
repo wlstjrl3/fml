@@ -47,24 +47,38 @@ function hasScrolled() { //스크롤이 발생하면
 //}}}
 
 // {{{ 사이드네비게이션 숨김/오픈
-function toggleNav() {
-    if(isNavOpen==0){navOpen();}else{navClose();}
+function toggleNav1() {
+    if(isNavOpen==1){navClose();}else{navOpen();}
+}
+function toggleNav2() {
+    if(isNavOpen==2){navClose();}else{nav2Open();}
 }
 function navOpen(){
     document.querySelector("#closeNav").style.width="100%";
     document.querySelector("#closeNav").style.height="9999%";
-    document.querySelector("#navToggle img").src="/assets/img/svgs/close.svg";
+    //document.querySelector("#navToggle img").src="/assets/img/svgs/close.svg";
     isNavOpen = 1;
-    document.querySelector('.side-nav').classList.add('navOpen');
+    document.querySelector('.side-nav1').classList.add('navOpen');
+    document.querySelector('.side-nav2').classList.remove('navOpen');
+    document.querySelector('html, body').style.overflow="hidden";
+}
+function nav2Open(){
+    document.querySelector("#closeNav").style.width="100%";
+    document.querySelector("#closeNav").style.height="9999%";
+    //document.querySelector("#navToggle img").src="/assets/img/svgs/close.svg";
+    isNavOpen = 2;
+    document.querySelector('.side-nav1').classList.remove('navOpen');
+    document.querySelector('.side-nav2').classList.add('navOpen');
     document.querySelector('html, body').style.overflow="hidden";
 }
 function navClose(){
     //if(window.innerWidth<1280){
     document.querySelector("#closeNav").style.width="0%";
     document.querySelector("#closeNav").style.height="0%";
-        document.querySelector("#navToggle img").src="/assets/img/svgs/menu.svg";
+        //document.querySelector("#navToggle img").src="/assets/img/svgs/menu.svg";
         isNavOpen = 0;
-        document.querySelector('.side-nav').classList.remove('navOpen');
+        document.querySelector('.side-nav1').classList.remove('navOpen');
+        document.querySelector('.side-nav2').classList.remove('navOpen');
         document.querySelector('html, body').style.overflow="visible";
     //}
 }

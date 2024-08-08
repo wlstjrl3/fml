@@ -3,7 +3,7 @@
     <div class="modalBg"></div>
     <div class="modalWindow">
         <div class="modalHeader">
-            <b>혼인강좌 신청정보 관리 </b>
+            <b>약혼자주말 신청정보 관리 </b>
             <button></button>
         </div>
         <div class="modalBody">
@@ -21,14 +21,10 @@
                     <div class="modalBd"><input type="date" autocomplete='off'></div>
                 </div>
                 <div class="modalGrp">
-                    <div class="modalHd">혼인장소명칭</div>
-                    <div class="modalBd"><input autocomplete='off'></div>
-                </div>
-                <div class="modalGrp">
-                    <div class="modalHd">혼인장소타입</div>
+                    <div class="modalHd">신청자구분</div>
                     <div class="modalBd"><select>
-                        <option value="0">성당</option>
-                        <option value="1">예식장</option>
+                        <option value="0">신랑</option>
+                        <option value="1">신부</option>
                     </select></div>
                 </div>
                 <div class="modalGrp">
@@ -62,18 +58,15 @@
                     <div class="modalBd"><input autocomplete='off'></div>
                 </div>
                 <div class="modalGrp">
-                    <div class="modalHd">신랑견진</div>
-                    <div class="modalBd"><select>
-                        <option value="0">받음</option>
-                        <option value="1">받지않음</option>
-                    </select></div>
-                </div>
-                <div class="modalGrp">
                     <div class="modalHd">신랑생년월일</div>
                     <div class="modalBd"><input type="date" autocomplete='off'></div>
                 </div>
                 <div class="modalGrp">
                     <div class="modalHd">신랑연락처</div>
+                    <div class="modalBd"><input autocomplete='off'></div>
+                </div>
+                <div class="modalGrp">
+                    <div class="modalHd">신랑부모연락처</div>
                     <div class="modalBd"><input autocomplete='off'></div>
                 </div>
                 <div style="clear:both;"></div>                
@@ -103,20 +96,17 @@
                     <div class="modalBd"><input autocomplete='off'></div>
                 </div>
                 <div class="modalGrp">
-                    <div class="modalHd">신부견진</div>
-                    <div class="modalBd"><select>
-                        <option value="0">받음</option>
-                        <option value="1">받지않음</option>
-                    </select></div>
-                </div>
-                <div class="modalGrp">
                     <div class="modalHd">신부생년월일</div>
                     <div class="modalBd"><input type="date" autocomplete='off'></div>
                 </div>
                 <div class="modalGrp">
                     <div class="modalHd">신부연락처</div>
                     <div class="modalBd"><input autocomplete='off'></div>
-                </div>             
+                </div>
+                <div class="modalGrp">
+                    <div class="modalHd">신부부모연락처</div>
+                    <div class="modalBd"><input autocomplete='off'></div>
+                </div>
                 <div style="clear:both;"></div>
             </div>
         </div>    
@@ -130,7 +120,7 @@
 <div class="container">
 
     <h4 class="cl3 pddS">
-        혼인강좌 신청자 관리
+        약혼자주말 신청자 관리
     </h4>
 
     <div class="searchArea">    
@@ -143,16 +133,12 @@
             <div class="colBd"><input class="dualDateBox filter" id="MRG_DT_From"><span>~</span><input class="dualDateBox filter" id="MRG_DT_To"></div>
         </div>
         <div class="colGrp">
-            <div class="colHd2L clBg5 cl2"><span><b>혼인장소<br>명칭</b></span></div>
-            <div class="colBd"><input id="MRG_PLACE" class="filter"></div>
-        </div>
-        <div class="colGrp">
-            <div class="colHd2L clBg5 cl2"><span><b>혼인장소<br>타입</b></span></div>
+            <div class="colHd clBg5 cl2"><span><b>신청인구분</b></span></div>
             <div class="colBd">
                 <select id="PLC_TYPE" class="filter">
                     <option value="2">전체</option>
-                    <option value="0">성당</option>
-                    <option value="1">예식장</option>
+                    <option value="0">신랑</option>
+                    <option value="1">신부</option>
                 </select>
             </div>
         </div>
@@ -171,16 +157,6 @@
         <div class="colGrp">
             <div class="colHd clBg5 cl2"><span><b>생년월일</b></span></div>
             <div class="colBd"><input id="BIRTH" class="filter"></div>
-        </div>        
-        <div class="colGrp">
-            <div class="colHd clBg5 cl2"><span><b>견진여부</b></span></div>
-            <div class="colBd">
-                <select id="CONFIRM" class="filter">
-                    <option value="2">전체</option>
-                    <option value="0">받음</option>
-                    <option value="1">받지않음</option>
-                </select>
-            </div>
         </div>
         <div class="colGrp">
             <div class="colHd clBg5 cl2"><span><b>전화번호</b></span></div>
@@ -218,7 +194,7 @@
 <script type='text/javascript' src='/admin/assets/js/hr_tbl.js'></script>
 <script type='text/javascript' src='/admin/assets/js/modal.js'></script>
 <script type='text/javascript' src='/admin/assets/js/library/xlsx.mini.min.js'></script>
-<script type='text/javascript' src='/admin/assets/js/reserve.js'></script>
+<script type='text/javascript' src='/admin/assets/js/eeReserve.js'></script>
 <script type='text/javascript' src='/assets/js/dateForm.js'></script>
 
 <?php include('components/footer.php'); ?>
