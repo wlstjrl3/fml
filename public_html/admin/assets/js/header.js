@@ -69,7 +69,24 @@ function navClose(){
     //}
 }
 // }}}
-// {{{ 방문자 IP, 접속URL, 방문시각, 브라우저 정보를 기록 기존 Ajax부분을 j쿼리 빼고 새로 작성할예정
+// {{{ 서브 2단 네비게이션 오픈,클로스
+window.addEventListener('DOMContentLoaded', function() {
+    document.querySelectorAll(".sideNavBlock > li").forEach(dp1=>{
+        if(dp1.childElementCount>2){ //내부에 ul이 들어있다면
+            dp1.addEventListener('click',(evt)=>{
+                if(evt.currentTarget.children[1].style.maxHeight == "1000px"){ //height에 auto가 들어가면 높이조절 애니메이션 적용 불가하여 maxHeight로 처리
+                    evt.currentTarget.children[0].children[0].style.transform="rotate(0deg)";
+                    evt.currentTarget.children[1].style.maxHeight = "0";
+                }else{
+                    evt.currentTarget.children[0].children[0].style.transform="rotate(180deg)";
+                    evt.currentTarget.children[1].style.maxHeight = "1000px";
+                }
+            });
+        }
+    });
+});
+//}}}
+// {{{ 방문자 IP, 접속URL, 방문시각, 브라우저 정보를 기록 새로 작성할예정
 {
 
 }

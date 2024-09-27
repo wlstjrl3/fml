@@ -107,18 +107,18 @@ modalDelBtn.addEventListener("click",()=>{
     let xhr = new XMLHttpRequest();
     let deleteUrl='';
     document.querySelector(".modalForm").querySelectorAll("input").forEach((input,key)=>{
-        if(key==0){deleteUrl+="&EDU_DT="+input.value}
+        if(key==0){deleteUrl+="&CLASS_NO="+input.value}
     });
     console.log("/admin/sys/eeEduConfig.php?key="+psnlKey.value+deleteUrl+"&CRUD=D");
     xhr.open("GET", "/admin/sys/eeEduConfig.php?key="+psnlKey.value+deleteUrl+"&CRUD=D"); xhr.send(); //XHR을 즉시 호출한다. psnlKey는 추후 암호화 하여 재적용 예정
     xhr.onload = () => {
         if (xhr.status === 200) { //XHR 응답이 존재한다면
             //var res = JSON.parse(xhr.response)['data']; //응답 받은 JSON데이터를 파싱한다.
-            console.log("psnl 정보 삭제 완료");
+            console.log("eeEduConfig 정보 삭제 완료");
             mytbl.show('myTbl'); //테이블의 아이디
             modalClose();
         }else{
-            console.log("psnl 정보 제거 에러!!!");
+            console.log("eeEduConfig 정보 제거 에러!!!");
         }
     }    
 });

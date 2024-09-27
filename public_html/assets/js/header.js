@@ -1,5 +1,13 @@
 document.addEventListener("DOMContentLoaded", () => {
-    noIE('이 웹사이트는 인터넷 익스플로러에서 작동하지 않습니다. 엣지 브라우저에서 다시 불러옵니다.')
+    noIE('이 웹사이트는 인터넷 익스플로러에서 작동하지 않습니다. 엣지 브라우저에서 다시 불러옵니다.');
+
+
+    if(window.location.pathname=="/ee_index.php"){
+        navClose();nav2Open();
+    }else{
+        navClose();navOpen();
+    }
+
 });
 
 // {{{ 상단 헤버 네비게이션 조작
@@ -48,10 +56,18 @@ function hasScrolled() { //스크롤이 발생하면
 
 // {{{ 사이드네비게이션 숨김/오픈
 function toggleNav1() {
-    if(isNavOpen==1){navClose();}else{navOpen();}
+    if(window.location.pathname=="/ee_index.php"||window.location.pathname=="/req.php"){
+        location.href="/index.php";
+    }else{
+        if(isNavOpen==1){navClose();}else{navOpen();}
+    }
 }
 function toggleNav2() {
-    if(isNavOpen==2){navClose();}else{nav2Open();}
+    if(window.location.pathname=="/"||window.location.pathname=="/index.php"||window.location.pathname=="/req.php"){
+        location.href="/ee_index.php";
+    }else{
+        if(isNavOpen==2){navClose();}else{nav2Open();}
+    }
 }
 function navOpen(){
     document.querySelector("#closeNav").style.width="100%";

@@ -17,8 +17,8 @@
     <hr style="border:0;border-top:1px solid #CCC;">
     <h5>　</h5>
     <div class="txtCenter">
-        <a href="/ee_req.php" class="clBg7 clW rndCorner pddL"><span class="fs5">약혼자주말 신청</span></a>
-        <a href="/ee_res.php" class="clBg7 clW rndCorner pddL"><span class="fs5">신청확인</span></a>
+        <a target="_blank" href="http://docs.google.com/forms/d/1RDMDquunT6HGiA8vZ2W59lu0pHKe8SGbd13DL_8Kuyk/" class="clBg7 clW rndCorner pddL"><span class="fs5">약혼자주말 신청</span></a>
+        <!--a href="/ee_res.php" class="clBg7 clW rndCorner pddL"><span class="fs5">신청확인</span></a-->
     </div>
     <h5>　</h5>    
 </div>

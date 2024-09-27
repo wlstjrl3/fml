@@ -29,7 +29,9 @@
         <div class="side-nav">
             <ul class="sideNavBlock">
                 <li>
-                    <a class="fs5" href="#">혼인강좌</a>
+                    <a class="fs5" href="#">혼인강좌
+                        <img src="/assets/img/svgs/direction.svg" alt="더보기"/>
+                    </a>
                     <ul>
                         <li>
                             <a href="/admin/">
@@ -38,25 +40,27 @@
                         </li>
                         <li>
                             <a href="/admin/reserve.php">
-                                └&nbsp;혼인강좌 신청자관리
+                                └&nbsp;신청자관리
                             </a>
                         </li>
                     </ul>
                     <hr>
                 </li>
                 <li class="clBg2">
-                    <a class="fs5" href="#">약혼자주말</a>
+                    <a class="fs5" href="#">약혼자주말
+                        <img src="/assets/img/svgs/direction.svg" alt="더보기"/>
+                    </a>
                     <ul>
                         <li>
                             <a href="/admin/eeList.php">
                                 └&nbsp;약혼주말설정
                             </a>
                         </li>
-                        <li>
+                        <!--li>
                             <a href="/admin/eeReserve.php">
                                 └&nbsp;약혼주말 신청자관리
                             </a>
-                        </li>
+                        </li-->
                     </ul>
                     <hr>
                 </li>                

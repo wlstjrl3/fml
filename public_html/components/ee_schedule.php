@@ -16,28 +16,23 @@
                     $thisMonth = substr($row['EDU_DT'],5,2);
                     if($preMonth!=$thisMonth){
                         if($preMonth!='00'){echo '</div>';}
-                        echo '<div class="pddM clBg5 rndCorner txtCenter scheduleBox"><span class="fs5 cl3 fontWBold">&nbsp; '.$thisMonth.'월　　</span>';
+                        echo '<div class="pddM clBg5 rndCorner txtCenter scheduleBox"><span class="fs5 cl3 fontWBold">&nbsp; '.$row['TEAM_CNT'].'차　　</span>';
                         $preMonth=$thisMonth;
                     }else{
                         echo '<span class="fs5">&nbsp; / &nbsp;</span>';
                     }
                     echo '<span class="fs5" style="color:';
                     if($row['ONLINE']==0){echo '#777;">';}else{echo '#E55;">';}
-                    echo substr($row['EDU_DT'],8,2);
-                    if(date('w',strtotime($row['EDU_DT']))==0){
-                        echo '(주　일)';
-                    }else if(date('w',strtotime($row['EDU_DT']))==6){
-                        echo '(토요일)';
-                    }else if(date('w',strtotime($row['EDU_DT']))==5){
-                        echo '(금요일)';
-                    }else{
-                        echo '(평일체크필요!)';
-                    }            
+                    echo substr($row['EDU_DT'],5,2).".".substr($row['EDU_DT'],8,2);
+
+                    echo " ~ ";
+                    $endDt = date("Y-m-d", strtotime($row['EDU_DT']." +2 days"));
+                    echo substr($endDt,5,2).".".substr($endDt,8,2);
                 }
                 echo '</div>    <div class="clearB"></div>';
             }
             if($currMonth == '11'||$currMonth == '12'){
-                echo '<br><br><div class="fs4 txtCenter"><span class="fs4 cl3" style="font-weight:900;">'.($currYear+1).'년 혼인강좌 일정</span></div><br>';
+                echo '<br><br><div class="fs4 txtCenter"><span class="fs4 cl3" style="font-weight:900;">'.($currYear+1).'년 약혼자주말 일정</span></div><br>';
                 $sql = "
                 SELECT * FROM EDU_FAMILY.EDU_CLASS WHERE EDU_DT >= '".($currYear+1)."-01-01' AND EDU_DT <= '".($currYear+1)."-12-31';
                 ";
@@ -48,27 +43,24 @@
                         $thisMonth = substr($row['EDU_DT'],5,2);
                         if($preMonth!=$thisMonth){
                             if($preMonth!='00'){echo '</div>';}
-                            echo '<div class="pddM clBg5 rndCorner txtCenter scheduleBox"><span class="fs5 cl3 fontWBold">&nbsp; '.$thisMonth.'월　　</span>';
+                            echo '<div class="pddM clBg5 rndCorner txtCenter scheduleBox"><span class="fs5 cl3 fontWBold">&nbsp; '.$row['TEAM_CNT'].'차　　</span>';
                             $preMonth=$thisMonth;
                         }else{
                             echo '<span class="fs5">&nbsp; / &nbsp;</span>';
                         }
                         echo '<span class="fs5" style="color:';
                         if($row['ONLINE']==0){echo '#777;">';}else{echo '#E55;">';}
-                        echo substr($row['EDU_DT'],8,2);
-                        if(date('w',strtotime($row['EDU_DT']))==0){
-                            echo '(주　일)';
-                        }else if(date('w',strtotime($row['EDU_DT']))==6){
-                            echo '(토요일)';
-                        }else{
-                            echo '(평일체크필요!)';
-                        }            
+                        echo substr($row['EDU_DT'],5,2).".".substr($row['EDU_DT'],8,2);
+    
+                        echo " ~ ";
+                        $endDt = date("Y-m-d", strtotime($row['EDU_DT']." +2 days"));
+                        echo substr($endDt,5,2).".".substr($endDt,8,2);
                     }
                     echo '</div>    <div class="clearB"></div>';
-                }   
+                }
             }
         ?>
     </div>
 </div>
 
-<link href="/assets/css/schedule.css?ver=0" rel="stylesheet" />
+<link href="/assets/css/schedule.css?ver=0.01" rel="stylesheet" />
