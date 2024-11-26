@@ -2,7 +2,7 @@
     <h1>　</h1>
     <h3 class="clB fontWExtr">일정안내</h3>
     <h1>　</h1>
-    <h5 class="clB fontWSlim" style="color:#E55">※ 일부는 Zoom을 이용한 비대면 교육으로 실시</h5>
+    <h5 class="clB fontWSlim" style="color:#E55">※ 빨간색으로 적힌 날짜는 비대면 교육으로 실시</h5>
     <h6>　</h6>
     <!--div class="pddM clBg5 rndCorner txtCenter scheduleBox"><span class="fs5 cl3 fontWBold">&nbsp; 4월　　</span><span class="fs5" style="color:#E55;">14(토요일)  /  <b  class="fs5 fontWSlim" style="color:#777;">28(주　일)</b></span></div-->
     <div>
@@ -41,7 +41,7 @@
             if($currMonth == '11'||$currMonth == '12'){
                 echo '<br><br><div class="fs4 txtCenter"><span class="fs4 cl3" style="font-weight:900;">'.($currYear+1).'년 혼인강좌 일정</span></div><br>';
                 $sql = "
-                SELECT * FROM EDU_FAMILY.EDU_CLASS WHERE EDU_DT >= '".($currYear+1)."-01-01' AND EDU_DT <= '".($currYear+1)."-12-31';
+                SELECT * FROM EDU_FAMILY.EDU_CLASS WHERE GRP_CD='MRG_EDU' AND EDU_DT >= '".($currYear+1)."-01-01' AND EDU_DT <= '".($currYear+1)."-12-31';
                 ";
                 $result = $conn->query($sql);
                 if ($result->num_rows > 0) {

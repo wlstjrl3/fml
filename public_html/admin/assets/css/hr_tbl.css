@@ -9,7 +9,7 @@
     background: rgba(0,0,0,.03);
 }
 .hr_tbl thead {
-    visibility: hidden;
+    display: none;
     position: absolute;
 }
 .hr_tbl tr {
@@ -64,17 +64,8 @@
         clear:both;
         overflow-x: scroll;
     }
-    .width1500{
-        width:1500px;
-    }
-    .width2000{
-        width:2000px;
-    }
-    .width2500{
-        width:2500px;
-    }
     .hr_tbl thead {
-        visibility: visible;
+        display: table-cell;
         position: relative;
         border-bottom: 2px solid #777;
     }
@@ -98,7 +89,15 @@
     }    
 }
 @media(min-width:720px){
-
+    .width1500{
+        width:1500px;
+    }
+    .width2000{
+        width:2000px;
+    }
+    .width2500{
+        width:2500px;
+    }
 }
 @media(min-width:960px){
   

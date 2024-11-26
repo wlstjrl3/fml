@@ -3,7 +3,7 @@
     clear:both;
     position:relative;
     border-bottom:1px solid #CCC;
-    height:80px;
+    padding:30px;
 
 }
 .prgTd, .prgTh{
@@ -30,10 +30,12 @@
 
 }
 @media(min-width:720px){
-    .prgTr{
-        width:70%;
-    }
     .coupleImg{
-        margin:-227px 0 0 0;
+        margin:-127px 0 -250px 0;
+    }
+    .prgTbl{
+        padding:0 20px;
+        width:50%;
+        float:left;
     }
 }
