@@ -56,6 +56,17 @@ header{
     width:40px;
     height:40px;
 }
+#popup {
+    position: fixed;
+    right: 7%;
+    bottom: 50px;
+    z-index: 999;
+    width:180px;
+    padding:20px;
+    background:#FFF;
+    transition:opacity .5s ease;
+    border-radius:6px;
+}
 #MOVE_TOP_BTN {
     position: fixed;
     right: 2%;

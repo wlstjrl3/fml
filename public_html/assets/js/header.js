@@ -98,6 +98,10 @@ function navClose(){
         document.querySelector('html, body').style.overflow="visible";
     //}
 }
+
+function closePopup(){
+    document.getElementById("popup").style.opacity=0;
+}
 // }}}
 // {{{ 방문자 IP, 접속URL, 방문시각, 브라우저 정보를 기록 기존 Ajax부분을 j쿼리 빼고 새로 작성할예정
 {

@@ -16,12 +16,12 @@ var mytbl = new hr_tbl({
     },
     columns: [
         //반드시 첫열이 key값이되는 열이 와야한다. 숨김여부는 class로 추가 지정
-        {title: "idx", data: "CLASS_NO", className: "colClassNo hidden"}
-        ,{title: "교육일", data: "EDU_DT", className: "colEduDt"}
-        ,{title: "마감일", data: "END_DT", className: "colEndDt"}
-        ,{title: "교육비", data: "EDU_PAY", className: "colEduPay"}
-        ,{title: "참가팀수", data: "TEAM_CNT", className: "colTeamCnt"}
-        ,{title: "온라인수강", data: "ONLINE", className: "colOnline"}
+        {title: "idx", data: "CLASS_NO", className: "hidden"}
+        ,{title: "교육일", data: "EDU_DT", className: ""}
+        ,{title: "마감일", data: "END_DT", className: ""}
+        ,{title: "교육비", data: "EDU_PAY", className: ""}
+        ,{title: "참가팀수", data: "TEAM_CNT", className: ""}
+        ,{title: "온라인수강", data: "ONLINE", className: ""}
     ],
 });
 mytbl.show('myTbl'); //테이블의 아이디에 렌더링 한다(갱신도 가능)

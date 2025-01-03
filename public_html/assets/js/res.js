@@ -21,6 +21,8 @@ reqSend.addEventListener("click",()=>{
 function xhrSend(){
     let xhr = new XMLHttpRequest();
     xhr.open("GET", "/dbconn/res_ok.php?name="+resName.value+"&telNo="+resNumber.value); xhr.send();
+    a = "/dbconn/res_ok.php?name="+resName.value+"&telNo="+resNumber.value;
+    debugger;
     xhr.onload = () => {
         if (xhr.status === 200) { //XHR 응답이 존재한다면
             var res = JSON.parse(xhr.response); //응답 받은 JSON데이터를 파싱한다.

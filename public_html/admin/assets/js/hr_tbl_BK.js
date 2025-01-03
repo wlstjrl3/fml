@@ -13,15 +13,14 @@ class hr_tbl{
         });
         resValue += "&ORDER="+this.hrDt.columns[this.hrDt.xhr.order.column].data+" "+this.hrDt.xhr.order.direction;
         resValue += "&LIMIT="+this.hrDt.xhr.page*this.hrDt.xhr.limit+","+this.hrDt.xhr.limit; //페이지네이션 정보를 추가한다.
-        //debugger;
+
         xhr.open("GET", resValue); xhr.send(); //XHR을 즉시 호출한다.
+        //debugger;
         xhr.onload = () => {
             if (xhr.status === 200) { //XHR 응답이 존재한다면
-                //debugger;
                 var tableData = JSON.parse(xhr.response)['data']; //응답 받은 JSON데이터를 파싱한다.
                 let totalCnt = JSON.parse(xhr.response)['totalCnt'];
                 let filterCnt = JSON.parse(xhr.response)['filterCnt'];
-                //let query = JSON.parse(xhr.response)['query'];
 //테이블 객체 생성 이벤트//
                 let table = document.querySelector('#'+tbNm) //외부에서 호출할때 적은 테이블 ID로 오브젝트를 준비한다.
                 table.classList.add('hr_tbl'); //해당 오브젝트에 hr_tbl이라는 클래스 명칭을 추가한다.
@@ -45,9 +44,7 @@ class hr_tbl{
                         if(key%2 == 0){str+=` class="even">`;}else{str+=` class="odd">`;}
                         str+= `<td class="openCol"><a class="colBtn">＋</a></td>`;
                         this.hrDt.columns.forEach((cl,key)=>{
-                            str+= `<td class="`+cl.className+`" data-label="`+cl.title+`"><p class="sharp">`;
-                            if(!row[cl.data]){}else{str+=row[cl.data];}
-                            str+=`</p></td>`;
+                            str+= `<td class="`+cl.className+`" data-label="`+cl.title+`"><p class="sharp">`+row[cl.data]+`</p></td>`;
                         });
                         str+=`</tr>`;
                     });
@@ -110,9 +107,9 @@ class hr_tbl{
                         <span>총 `+totalCnt+`개 행중 `+filterCnt+`개 필터링</span>
                     </div>
                     <div class="pddS floatR">
-                        <span>페이지 지정</span>
-                        <input id="pageDirectNum" class="txtCenter pddSS rndCorner clBrC" style="width:90px;">
-                        <a class="pddS clBg3 clW rndCorner pointer">이동</a>
+                            <span>페이지 지정</span>
+                            <input id="pageDirect" class="txtCenter pddSS rndCorner clBrC" style="width:90px;">
+                        <a id="xport" class="pddS clBg3 clW rndCorner pointer">이동</a>
                     </div>
                     <div class="clearB"></div>
                 `;
@@ -127,14 +124,15 @@ class hr_tbl{
                         if(this.hrDt.xhr.page<0){this.hrDt.xhr.page=0;} //1페이지보다 낮지않도록
                     }else{
                         this.hrDt.xhr.page = Number(pgMvBtn.text)-1;
-                    }
+                    }                    
                     mytbl.show(tbNm);                                                   //테이블의 정보갱신
                     });
                 });
-                document.getElementById("pageDirectNum").addEventListener('change',()=>{
-                    this.hrDt.xhr.page = Number(pageDirectNum.value)-1;
-                    mytbl.show(tbNm);                                                   //테이블의 정보갱신
+                pageDirect.addEventListener("change",(e)=>{
+                    this.hrDt.xhr.page=e.currentTarget.value-1;
+                    mytbl.show(tbNm);
                 });
+
 //테이블의 행 클릭 이벤트//
                 table.querySelectorAll("tr").forEach(tr=>{                              //테이블의 모든 행을 tr이라고 지정한다.
                     tr.addEventListener("click",target=>{                               //모든 행에 클릭 이벤트를 추가한다.
@@ -164,36 +162,7 @@ class hr_tbl{
                                 mytbl.hrDt.xhr.order.direction="desc"  //내림차순 정렬
                             }
                             mytbl.show(tbNm);                                           //테이블의 정보갱신
-                        }else if(this.hrDt.tblType=="psnlPopup"){   //개인검색 팝업창에서의 행클릭 이벤트
-                            opener.document.getElementById('PSNL_CD').value = target.currentTarget.children[1].innerText;
-                            opener.document.getElementById('ORG_NM').value = target.currentTarget.children[2].innerText;
-                            opener.document.getElementById('PSNL_NM').value = target.currentTarget.children[3].innerText;
-                            opener.document.getElementById('POSITION').value = target.currentTarget.children[5].innerText;
-                            opener.document.getElementById('psnlSerchPop').parentElement.parentElement.nextElementSibling.querySelector("input").focus();    
-                            opener.myTblRefresh();            
-                            window.close(); 
-                        }else if(this.hrDt.tblType=="orgPopup"){   //조직검색 팝업창에서의 행클릭 이벤트
-                            opener.document.getElementById('orgCd').value = target.currentTarget.children[1].innerText
-                            opener.document.getElementById('orgNm').value = target.currentTarget.children[2].innerText;
-                            opener.document.getElementById('orgSerchPop').focus();
-                            window.close();
-                        }else if(this.hrDt.tblType=="pageLink"){   //페이지 이동처리 이벤트
-                            let param = "";
-                            tr.querySelectorAll("td").forEach(td=>{
-                                if(td.dataset.label=="본당명"){
-                                    param+="ORG_NM="+td.textContent+"&";
-                                }else if(td.dataset.label=="성명"){
-                                    param+="PSNL_NM="+td.textContent+"&";
-                                }else if(td.dataset.label=="직책"){
-                                    param+="POSITION="+td.textContent+"&";
-                                }else if(td.dataset.label=="개인번호"||td.dataset.label=="개인코드"){
-                                    param+="PSNL_CD="+td.textContent+"&";
-                                }else if(td.dataset.label=="본당코드"){
-                                    param+="ORG_CD="+td.textContent+"&";
-                                }
-                            });
-                            location.href=this.hrDt.pageLinkHref+param;
-                        }else{                                                          //팝업창도 아니고 +버튼이 아닌 행을 클릭하여 모달창을 연다면
+                        }else{                                                          //+버튼이 아닌 행을 클릭하여 모달창을 연다면
                             let modalForm = document.querySelector(".modalForm")
                             modalForm.style.visibility="visible"; //모달창이 나타나게 한다.
                             modalForm.style.opacity="1";     //투명도 애니메이션 적용을 위해 opacity가 0에서 1로 변경된다.
@@ -227,25 +196,19 @@ class hr_tbl{
                     XLSX.utils.book_append_sheet(workbook, worksheet, "Dates");    
                     /* fix headers */
 
+                    /* 제목열 교체
                     let clTitle = [];
                     this.hrDt.columns.forEach((cl) => {
-                    //    clTitle.push(cl.title); //페이지의 제목열을 엑셀파일 제목열로 푸시
+                        clTitle.push(cl.title);
                     });
                     XLSX.utils.sheet_add_aoa(worksheet, [clTitle], { origin: "A1" });
+                    */
                     /* create an XLSX file and try to save to Presidents.xlsx */
-
-                    // 오늘 날짜
-                    const today = new Date();const year = today.getFullYear();const month = (today.getMonth() + 1).toString().padStart(2, '0');const day = today.getDate().toString().padStart(2, '0'); 
-                    const yyyymmdd = `${year}${month}${day}`;
-
                     XLSX.writeFile(workbook, yyyymmdd+window.location.pathname+".xlsx", { compression: true });    
                 } else {
                     console.error(xhr.status, xhr.statusText);
                 }
             }
         });
-    }
-    dataBind(){
-        console.log("키값에 맞춰 데이터 바인드");
     }
 }

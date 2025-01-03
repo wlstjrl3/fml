@@ -34,7 +34,7 @@
             if($currMonth == '11'||$currMonth == '12'){
                 echo '<br><br><div class="fs4 txtCenter"><span class="fs4 cl3" style="font-weight:900;">'.($currYear+1).'년 약혼자주말 일정</span></div><br>';
                 $sql = "
-                SELECT * FROM EDU_FAMILY.EDU_CLASS WHERE EDU_DT >= '".($currYear+1)."-01-01' AND EDU_DT <= '".($currYear+1)."-12-31';
+                SELECT * FROM EDU_FAMILY.EDU_CLASS WHERE GRP_CD = 'WEEK_END' AND EDU_DT >= '".($currYear+1)."-01-01' AND EDU_DT <= '".($currYear+1)."-12-31';
                 ";
                 $result = $conn->query($sql);
                 if ($result->num_rows > 0) {

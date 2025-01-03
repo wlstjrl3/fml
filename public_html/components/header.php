@@ -138,4 +138,5 @@ ini_set( "display_errors", 1 );
         </div>        
     </header>
     <br>
+    <!--내부팝업 div id="popup"><span style="background:#F00;color:white;border-radius:6px;padding:6px;">꼭 확인해주세요!!</span><a onclick="closePopup()" style="float:right;background:#CCC;padding:2px 5px;border-radius:6px;font-weight:900;">X</a><br><span>2025년 교육비는 2025년 1월 1일 이후에 입금해주세요!!</span></div-->
     <a id="MOVE_TOP_BTN" href="#"><img src="/assets/img/svgs/topBtn.svg" alt="스크롤 상단으로 올리기"></a>
