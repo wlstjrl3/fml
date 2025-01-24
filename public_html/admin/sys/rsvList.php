@@ -7,13 +7,13 @@
     $rowCntSql = "SELECT COUNT(*) AS ROW_CNT FROM EDU_FAMILY.EDU_FAMILY";
 
     //기본 쿼리
-    $sql = "SELECT * ";
-    //추가 조건
-    $sql = $sql."
+    $sql = "SELECT 
+        EF_NO,GRP_CD,MRG_DT,EDU_DT
         ,CASE
         WHEN PLC_TYPE = 0 THEN '성당'
         WHEN PLC_TYPE = 1 THEN '예식장'
         END AS PLC_TYPE_KOR
+        ,PLC_TYPE,MRG_PLACE
         ,CASE
         WHEN M_RELIGION = 0 THEN '가톨릭'
         WHEN M_RELIGION = 1 THEN '예비신자'
@@ -22,6 +22,12 @@
         WHEN M_RELIGION = 4 THEN '기타'
         WHEN M_RELIGION = 5 THEN '무교'
         END AS M_RELIGION_KOR
+        ,M_RELIGION,M_NAME,M_BAPT,M_ORG_NM,M_CONFIRM,M_BIRTH,M_TEL_NO,M_TEL_NO2
+        ,FLOOR(DATEDIFF(CURDATE(), M_BIRTH) / 365.25) AS M_AGE        
+        ,CASE
+        WHEN M_CONFIRM = 0 THEN 'Y'
+        WHEN M_CONFIRM = 1 THEN 'N'
+        END AS 신랑견진        
         ,CASE
         WHEN F_RELIGION = 0 THEN '가톨릭'
         WHEN F_RELIGION = 1 THEN '예비신자'
@@ -29,8 +35,14 @@
         WHEN F_RELIGION = 3 THEN '불교'
         WHEN F_RELIGION = 4 THEN '기타'
         WHEN F_RELIGION = 5 THEN '무교'
-        END AS F_RELIGION_KOR
-        ";
+        END AS F_RELIGION_KOR        
+        ,F_RELIGION,F_NAME,F_BAPT,F_ORG_NM,F_CONFIRM,F_BIRTH,F_TEL_NO,F_TEL_NO2
+        ,FLOOR(DATEDIFF(CURDATE(), F_BIRTH) / 365.25) AS F_AGE
+        ,CASE
+        WHEN F_CONFIRM = 0 THEN 'Y'
+        WHEN F_CONFIRM = 1 THEN 'N'
+        END AS 신부견진        
+        ,REG_DT,EMAIL,RMK";
     $sql = $sql." FROM EDU_FAMILY.EDU_FAMILY";
     //조건문 지정
     $whereSql = " WHERE GRP_CD='MRG_EDU' ";

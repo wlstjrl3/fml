@@ -8,8 +8,8 @@ var mytbl = new hr_tbl({
             nothing : '', //filter의 값 변동이 생기면 여기에 즉시 추가 값을 더하고 xhr을 호출한다.
         },
         order: {
-            column : '0',
-            direction : 'desc',
+            column : '7',
+            direction : 'asc',
         },
         page : 0, //표시되는 페이지에서 1이 빠진 값이다 즉 page:0 = 1페이지
         limit : 10, //만약 리미트가 0이라면 리미트 없이 전체 조회하는 것으로 처리 excel down등에서 0 처리해야 함!
@@ -28,7 +28,8 @@ var mytbl = new hr_tbl({
         ,{title: "신랑세례명", data: "M_BAPT", className: "colBapt"}
         ,{title: "신랑본당", data: "M_ORG_NM", className: "colOrgNm"}
         ,{title: "신랑생년월일", data: "M_BIRTH", className: "colBirth"}
-        ,{title: "신랑견진여부", data: "M_CONFIRM", className: "colConfirm"}
+        ,{title: "신랑나이", data: "M_AGE", className: "colBirth"}
+        ,{title: "신랑견진여부", data: "신랑견진", className: "colConfirm"}
         ,{title: "신랑전화번호", data: "M_TEL_NO", className: "colTelNo"}
         
         ,{title: "신부종교", data: "F_RELIGION_KOR", className: "colReligion"}
@@ -36,7 +37,8 @@ var mytbl = new hr_tbl({
         ,{title: "신부세례명", data: "F_BAPT", className: "colBapt"}
         ,{title: "신부본당", data: "F_ORG_NM", className: "colOrgNm"}
         ,{title: "신부생년월일", data: "F_BIRTH", className: "colBirth"}
-        ,{title: "신부견진여부", data: "F_CONFIRM", className: "colConfirm"}
+        ,{title: "신부나이", data: "F_AGE", className: "colBirth"}
+        ,{title: "신부견진여부", data: "신부견진", className: "colConfirm"}
         ,{title: "신부전화번호", data: "F_TEL_NO", className: "colTelNo"}
     ],
 });

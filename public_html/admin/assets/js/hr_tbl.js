@@ -216,6 +216,10 @@ class hr_tbl{
                     resValue += "&"+wh+"="+this.hrDt.xhr.where[wh];
                 }
             });
+            if(this.hrDt.xhr.order!=''){ /* 2025-01-14 정렬기준을 포함하도록 코드 추가 */
+                resValue += "&ORDER="+this.hrDt.columns[this.hrDt.xhr.order.column].data+" "+this.hrDt.xhr.order.direction;
+                debugger;
+            }
             //엑셀다운로드는 페이징과 무관하게 전체 데이터를 가져와야 하므로 limit 데이터를 풀고 별도 코드를 통해 xhr로 가져와야 함!
             //resValue += "&LIMIT="+this.hrDt.xhr.page*this.hrDt.xhr.limit+","+this.hrDt.xhr.limit;
             xhr.open("GET", resValue); xhr.send();
